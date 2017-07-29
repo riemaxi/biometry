@@ -1,1 +1,1 @@
-sh pair.sh | python pair_zero.py
+sh pair_ready.sh | python pair_zero.py

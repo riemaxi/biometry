@@ -12,8 +12,8 @@ def readscore(pid, cid, maxscore):
 		return maxscore + 1
 
 for line in sys.stdin:
-	pid, cid line.strip('\n').split('\t')
+	pid, cid, mark = line.strip('\n').split('\t')
 	score = abs(readscore(pid,cid, maxscore))
 
-	if mark != '1.0' and score == 0.0:
+	if mark == '!' and score == 0.0:
 		print(pid, cid , sep = '\t')
