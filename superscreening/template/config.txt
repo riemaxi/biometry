@@ -1,0 +1,22 @@
+center_x = __CENTER_X__
+center_y = __CENTER_Y__
+center_z = __CENTER_Z__
+
+size_x = 30
+size_y = 30
+size_z = 30
+
+exhaustiveness = __EXHAUSTIVENESS__
+
+energy_range = 5
+
+cpu = 1
+# seed = 0.1 
+# num_modes = 9
+
+# weight_gauss1 = -0.035579
+# weight_gauss2 = -0.005156
+# weight_repulsion = 0.84024500000000002
+# weight_hydrophobic = -0.035069000000000003
+# weight_hydrogen = -0.58743900000000004
+# weight_rot = 0.058459999999999998
