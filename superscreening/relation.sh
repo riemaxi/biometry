@@ -1,1 +1,1 @@
-cat hot/pair.txt | python relation.py
+sh pair.sh | python relation.py
