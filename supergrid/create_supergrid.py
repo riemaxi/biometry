@@ -16,6 +16,6 @@ SuperGrid(
 	hull.data(), 
 	hull.minz(), 
 	hull.maxz()).foreach(
-		lambda x,y,z: print('{:.2f}\t{:.2f}\t{:.2f}'.format(x, y, z) )
+		lambda i, center: print('{}\t{:.2f}\t{:.2f}\t{:.2f}'.format(i, center[0] , center[1], center[2]) )
 )
 
