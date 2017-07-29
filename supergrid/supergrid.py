@@ -24,8 +24,8 @@ class SuperGrid():
 		steph = min(self.hsize,self.size)/2
 		stepz = min(self.vsize,self.size)/2
 		
-		for z in self.range(self.minz + stepz, self.maxz, stepz):
-			for x in self.range(self.minx + steph, self.maxx, steph):
-				for y in self.range(self.miny + steph, self.maxy, steph):
+		for z in self.range(self.minz + stepz, self.maxz, 2*stepz):
+			for x in self.range(self.minx + steph, self.maxx, 2*steph):
+				for y in self.range(self.miny + steph, self.maxy, 2*steph):
 					sink(x,y,z)
 		
