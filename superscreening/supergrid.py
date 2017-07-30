@@ -31,5 +31,5 @@ class SuperGrid():
 			for x in self.range(self.minx + steph, self.maxx, 2*steph):
 				for y in self.range(self.miny + steph, self.maxy, 2*steph):
 					sink( index, (x,y,z) )
-					index =+ 1
+					index += 1
 		

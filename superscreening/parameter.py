@@ -9,7 +9,7 @@ ligand_id_path = 'data/ligand.txt'
 root = '.'
 pair = 'hot/pair.txt'
 
-exhaustiveness = 32
+exhaustiveness = 128
 
 grid_mesh_size = 28
 

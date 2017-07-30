@@ -8,7 +8,7 @@ def ready(pid, cid):
 	try:
 		files = glob.glob('hot/{}_{}/score_*.txt'.format(pid, cid))
 		readies = [1 for file in files if open(file).read().strip() != '1.0']
-		return len(files) and not len(readies)
+		return len(files) == len(readies)
 	except:
 		return False
 

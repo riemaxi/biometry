@@ -27,7 +27,7 @@ class IScreening(Thread):
 		self.template = open('template/task_docking.sbatch').read()
 		self.index = 1
 
-	def jCount(self, state = 'R'):
+	def jCount(self, state = 'R,PD'):
 		statsfile = 'log/stats.txt'
 		os.system("squeue -t {} -u {} --Format=name | grep -e '{}_' | wc > {}".format(state, self.user, self.project, statsfile))
 		tpl = open(statsfile).read().strip()

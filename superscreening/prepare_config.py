@@ -1,4 +1,3 @@
-from dockingbox import createbox
 import sys
 from parameter import *
 
