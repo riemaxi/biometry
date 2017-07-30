@@ -3,7 +3,6 @@ import time
 import os
 import re
 from supergrid import SuperGrid
-from convexhull import ConvexHull
 
 from signal import SIGTERM
 
@@ -15,7 +14,8 @@ class Screening(Daemon):
 			pair,
 			payload = 50,
 			runnies = 10,
-			hold_time = 5):
+			hold_time = 5,
+			grid_mesh_size = 28):
 		Daemon.__init__(
 				self, 
 				pidfile = 'log/process.pid', 
@@ -29,6 +29,7 @@ class Screening(Daemon):
 		self.payload = payload
 		self.runnies = runnies
 		self.hold_time = hold_time
+		self.grid_mesh_size = grid_mesh_size
 
 		self.template = open('template/task_docking.sbatch').read()
 		self.index = 1
@@ -87,17 +88,22 @@ class Screening(Daemon):
 
 			self.index += 1
 
-	def xyz(self, pdb):
-		data = []
+	def box(self, pdb):
+		a = (float('inf'), float('inf'), float('inf'))
+		b = (float('-inf'), float('-inf'), float('-inf'))
 		for line in open(pdb):
-			line = line.strip('\n')
 			if line.startswith('ATOM'):
-				data.append( (float(line[30:38]), float(line[39:46]),float(line[47:54])) )
-		return data
+				line = line.strip('\n')
+				x, y, z = (float(line[30:38]), float(line[39:46]),float(line[47:54])) )
+
+				a = (min(a[0],x), min(a[1], y), min(a[2], z))
+				b = (max(b[0],x), max(b[1], y), max(b[2], z))
+
+		return a,b
 
 	def supergrid(self, pid, sink):
-		hull = ConvexHull(self.xyz('data/{}.pdb'.format(pid))
-		SuperGrid(hull.data(), hull.minz(), hull.maxz()).foreach( lambda i, center : sink(i, center) )
+		a, b = self.box( 'data/{}.pdb'.format(pid) )
+		SuperGrid( a, b, self.grid_mesh_size ).foreach( lambda i, center : sink(i, center) )
 
 	def run(self):
 		for line in open(self.pair):

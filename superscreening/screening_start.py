@@ -7,5 +7,6 @@ Screening(
 	project, 
 	pair, 
 	payload, 
-	runnies
+	runnies,
+	grid_mesh_size
 	).start()

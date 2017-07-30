@@ -11,6 +11,8 @@ pair = 'hot/pair.txt'
 
 exhaustiveness = 32
 
+grid_mesh_size = 28
+
 maxscore = 0.0
 heatmap_scale_size = 200
 heatmap_title = 'heatmap'

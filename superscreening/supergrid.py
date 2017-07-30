@@ -1,15 +1,17 @@
 # the dimensions are in Ansgtroms
 
 class SuperGrid():
-	def __init__(self, data, minz, maxz, size = 28):
-		self.data = data
+	def __init__(self, a,b, size = 28):
 		self.size = size
-		self.minz = minz
-		self.maxz = maxz
-		self.minx = min([p[0] for p in data])
-		self.maxx = max([p[0] for p in data])
-		self.miny =  min([p[1] for p in data])
-		self.maxy = max([p[1] for p in data])
+		self.minx = a[0]
+		self.maxx = b[0]
+
+		self.miny =  a[1]
+		self.maxy = b[1]
+
+		self.minz = a[2]
+		self.maxz = b[2]
+
 		self.hsize = min(min(self.size, self.maxx - self.minx), self.maxy - self.miny)
 		self.vsize = min(self.size, self.maxz - self.minz)
 
