@@ -1,12 +1,10 @@
-from daemon import Daemon
 import time
 import os
 import re
 from supergrid import SuperGrid
+from threading import Thread
 
-from signal import SIGTERM
-
-class Screening(Daemon):
+class IScreening(Thread):
 	def __init__(self, 
 			root,
 			user,
@@ -16,12 +14,7 @@ class Screening(Daemon):
 			runnies = 10,
 			grid_mesh_size = 28,
 			hold_time = 5):
-		Daemon.__init__(
-				self, 
-				pidfile = 'log/process.pid', 
-				root = root,
-				stdout = 'log/stdout.txt',
-				stderr = 'log/stderr.txt')
+		Thread.__init__(self)
 
 		self.pair = pair
 		self.user = user
@@ -114,15 +107,3 @@ class Screening(Daemon):
 			)
 
 		os.system('sbatch heatmatrix.sbatch')
-
-
-	def kill(self):
-		try:
-			id = int(open(self.pidfile).read().strip('\n'))
-			os.system('rm -f ' + self.pidfile)
-
-			os.kill(id, SIGTERM)
-		except OSError as e:
-			pass
-
-
