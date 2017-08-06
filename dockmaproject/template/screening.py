@@ -32,7 +32,8 @@ class Screening(Daemon):
 		self.grid_mesh_size = grid_mesh_size
 
 		self.template = open('template/task_docking.sbatch').read()
-		self.index = 1
+
+		self.index = 0
 
 	def jCount(self, state = 'R,PD'):
 		statsfile = 'log/stats.txt'
@@ -69,7 +70,7 @@ class Screening(Daemon):
 
 
 	def process(self, pid, cid, i, center):
-		if self.index % self.payload == 0:
+		if self.index == 0:
 			self.hold()
 
 		dir = 'hot/{}_{}'.format(pid, cid)
@@ -86,7 +87,7 @@ class Screening(Daemon):
 
 			os.system('sbatch ' + path )
 
-			self.index += 1
+			self.index = (self.index + 1) % self.payload
 
 	def box(self, pdb):
 		a = (float('inf'), float('inf'), float('inf'))
