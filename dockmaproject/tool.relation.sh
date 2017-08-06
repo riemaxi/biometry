@@ -1,0 +1,1 @@
+cat data/receptor.txt | awk '{if(system( "[ -d " $0 " ]") == 0) print $0}' | awk '{printf "cat %s/report/relation.txt\n",$0}' | awk '{printf "%s_%s\t%s\n", $1,$2, $3}' | awk -F_ '{printf "%s\t%s\n", $1, $2}' | awk '{system($0)}'
