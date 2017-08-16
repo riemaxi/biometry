@@ -16,10 +16,8 @@ int main()
 	
 	while(next())
 	{
-		for(long i=0, done = 0; !done; i++)
-		{
-			done = compute(i);
-		}
+		for(long i=0; !compute(i); i++);
+
 		delay(time_constant);
 	}
 
